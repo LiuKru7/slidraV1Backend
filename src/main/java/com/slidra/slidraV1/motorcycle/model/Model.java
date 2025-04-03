@@ -1,6 +1,7 @@
 package com.slidra.slidraV1.motorcycle.model;
 
 import com.slidra.slidraV1.motorcycle.enums.FuelType;
+import com.slidra.slidraV1.motorcycle.enums.ModelCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +27,8 @@ public class Model {
     private Integer yearFrom;
     private Integer yearTo;
     private String generation;
-    private String category;
+    @Enumerated (EnumType.STRING)
+    private ModelCategory category;
     private Integer engineDisplacement;
     private Integer horsepower;
     private Double weight;
