@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Motorcycle {
+public abstract class Motorcycle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

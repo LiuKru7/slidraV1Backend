@@ -23,7 +23,6 @@ public class ModelController {
 
         return ResponseEntity.ok(modelService.getAllModelsByBrand(brandId));
 
-
     }
 
 

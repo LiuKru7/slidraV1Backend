@@ -51,5 +51,4 @@ public class FakeDataLoader implements CommandLineRunner {
         userRepository.save(user3);
 
     }
-
 }
