@@ -12,6 +12,5 @@ import org.springframework.stereotype.Service;
 public interface BrandMapper {
 
     BrandResponse toBrandResponse(Brand brand);
-
     Brand toBrand(BrandRequest brandRequest);
 }

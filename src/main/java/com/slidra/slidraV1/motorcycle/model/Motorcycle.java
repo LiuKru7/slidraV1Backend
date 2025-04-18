@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
-@Table(name = "motorcycles")
+
+@MappedSuperclass
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,12 +25,12 @@ public abstract class Motorcycle {
 
     private Integer year;
     private Integer mileage;
-    private Double price;
+    private Double buyPrice;
 
     @ElementCollection
     @CollectionTable(name = "motorcycle_photos", joinColumns = @JoinColumn(name = "motorcycle_id"))
     @Column(name = "photo_url")
-    private List<String> photosUrls;
+    private List<String> photoUrls;
 
     private String description;
 }

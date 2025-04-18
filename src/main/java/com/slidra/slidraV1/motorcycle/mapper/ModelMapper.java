@@ -11,6 +11,5 @@ import org.mapstruct.Mapper;
 public interface ModelMapper {
 
     ModelResponse toModelResponse(Model model);
-
     Model toModel(ModelRequest modelRequest);
 }
