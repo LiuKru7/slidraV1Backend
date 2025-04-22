@@ -3,6 +3,7 @@ package com.slidra.slidraV1.motorcycle.service.impl;
 import com.slidra.slidraV1.motorcycle.dto.MotorcycleForSaleRequest;
 import com.slidra.slidraV1.motorcycle.dto.MotorcycleForSaleResponse;
 import com.slidra.slidraV1.motorcycle.mapper.MotorcycleForSaleMapper;
+import com.slidra.slidraV1.motorcycle.model.MotorcycleForSale;
 import com.slidra.slidraV1.motorcycle.repository.MotorcycleForSaleRepository;
 import com.slidra.slidraV1.motorcycle.service.MotorcycleForSaleService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class MotorcycleForSaleImpl implements MotorcycleForSaleService {
 
     @Override
     public MotorcycleForSaleResponse addNewMotorcycleForSale(MotorcycleForSaleRequest motorcycleForSaleRequest) {
-        return null;
+        MotorcycleForSale motorcycleForSale = motorcycleForSaleMapper.toMotorcycleForSale(motorcycleForSaleRequest);
+        return motorcycleForSaleMapper.toMotorcycleForSaleResponse(motorcycleForSaleRepository.save(motorcycleForSale));
     }
 }
