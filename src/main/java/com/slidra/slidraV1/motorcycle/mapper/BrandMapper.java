@@ -4,6 +4,7 @@ import com.slidra.slidraV1.motorcycle.dto.BrandRequest;
 import com.slidra.slidraV1.motorcycle.dto.BrandResponse;
 import com.slidra.slidraV1.motorcycle.model.Brand;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,7 @@ import org.springframework.stereotype.Service;
 public interface BrandMapper {
 
     BrandResponse toBrandResponse(Brand brand);
+    @Mapping(target = "models", ignore = true)
+    @Mapping(target = "id", ignore = true)
     Brand toBrand(BrandRequest brandRequest);
 }

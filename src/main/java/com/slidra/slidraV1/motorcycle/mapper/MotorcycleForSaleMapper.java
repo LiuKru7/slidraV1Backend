@@ -10,8 +10,16 @@ import org.mapstruct.Mapping;
 public interface MotorcycleForSaleMapper {
 
     //todo need check expression
-    @Mapping(target = "modelName", expression = "java(motorcycleForSale.getModel().getName())")
-    @Mapping(target = "brandName", expression = "java(motorcycleForSale.getModel().getBrand().getName())")
-    MotorcycleForSaleResponse toMotorcycleForSaleResponse(MotorcycleForSale motorcycleForSale);
-    MotorcycleForSale toMotorcycleForSale(MotorcycleForSaleRequest motorcycleForSaleRequest);
-}
+
+
+        @Mapping(target = "modelId", expression = "java(motorcycleForSale.getModel().getId())")
+        @Mapping(target = "modelName", expression = "java(motorcycleForSale.getModel().getName())")
+        @Mapping(target = "brandName", expression = "java(motorcycleForSale.getModel().getBrand().getName())")
+        MotorcycleForSaleResponse toMotorcycleForSaleResponse(MotorcycleForSale motorcycleForSale);
+
+        @Mapping(target = "model", ignore = true)
+        @Mapping(target = "soldPrice", ignore = true)
+        MotorcycleForSale toMotorcycleForSale(MotorcycleForSaleRequest motorcycleForSaleRequest);
+    }
+
+

@@ -9,4 +9,8 @@ public interface MotorcycleForSaleService  {
     List<MotorcycleForSaleResponse> getALlMotorcycleForSale();
 
     MotorcycleForSaleResponse addNewMotorcycleForSale(MotorcycleForSaleRequest motorcycleForSaleRequest);
+
+    List<MotorcycleForSaleResponse> getMotorcyclesForSaleByBrand(String brand);
+
+    List<MotorcycleForSaleResponse> getMotorcyclesForSaleByModel(String model);
 }

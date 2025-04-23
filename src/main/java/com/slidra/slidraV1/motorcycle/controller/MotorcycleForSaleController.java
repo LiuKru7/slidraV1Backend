@@ -22,6 +22,16 @@ public class MotorcycleForSaleController {
         return ResponseEntity.ok(motorcycleForSaleService.getALlMotorcycleForSale());
     }
 
+    @GetMapping("/brand/{brand}")
+    public ResponseEntity<List<MotorcycleForSaleResponse>> getMotorcycleForSaleByBrand(@PathVariable String brand){
+        return ResponseEntity.ok(motorcycleForSaleService.getMotorcyclesForSaleByBrand(brand));
+    }
+
+    @GetMapping("/model/{model}")
+    public ResponseEntity<List<MotorcycleForSaleResponse>> getMotorcycleForSaleByModel(@PathVariable String model){
+        return ResponseEntity.ok(motorcycleForSaleService.getMotorcyclesForSaleByModel(model));
+    }
+
     @PostMapping
     public ResponseEntity<MotorcycleForSaleResponse> addNewMotorcycleForSale (@RequestBody MotorcycleForSaleRequest motorcycleForSaleRequest){
         return ResponseEntity.status(HttpStatus.CREATED).body(motorcycleForSaleService.addNewMotorcycleForSale(motorcycleForSaleRequest));

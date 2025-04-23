@@ -13,7 +13,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public abstract class Motorcycle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

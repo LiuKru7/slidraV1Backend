@@ -4,7 +4,7 @@ import java.util.List;
 
 public record MotorcycleForSaleResponse(
         Long id,
-        String modelId,
+        Long modelId,
         String modelName,
         String brandName,
         Integer year,

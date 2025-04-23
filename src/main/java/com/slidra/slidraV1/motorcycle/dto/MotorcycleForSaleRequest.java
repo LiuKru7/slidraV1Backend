@@ -5,7 +5,7 @@ import java.util.List;
 //todo Need add variables
 public record MotorcycleForSaleRequest (
         Long id,
-        String modelId,
+        Long modelId,
         Integer year,
         Integer mileage,
         Double buyPrice,
