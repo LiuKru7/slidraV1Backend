@@ -5,8 +5,10 @@ import com.slidra.slidraV1.motorcycle.dto.MotorcycleForSaleResponse;
 import com.slidra.slidraV1.motorcycle.service.MotorcycleForSaleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -32,9 +34,15 @@ public class MotorcycleForSaleController {
         return ResponseEntity.ok(motorcycleForSaleService.getMotorcyclesForSaleByModel(model));
     }
 
-    @PostMapping
-    public ResponseEntity<MotorcycleForSaleResponse> addNewMotorcycleForSale (@RequestBody MotorcycleForSaleRequest motorcycleForSaleRequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(motorcycleForSaleService.addNewMotorcycleForSale(motorcycleForSaleRequest));
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<MotorcycleForSaleResponse> addNewMotorcycleForSale(
+            @RequestPart("motorcycle") MotorcycleForSaleRequest request,
+            @RequestPart("file") MultipartFile file) {
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(motorcycleForSaleService.addNewMotorcycleForSale(request, file));
     }
+
 
 }
