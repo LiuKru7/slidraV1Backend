@@ -1,6 +1,6 @@
 package com.slidra.slidraV1.motorcycle.model;
 
-import com.slidra.slidraV1.motoPart.model.Part;
+import com.slidra.slidraV1.part.model.Part;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

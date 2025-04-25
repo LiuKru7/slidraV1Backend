@@ -1,6 +1,8 @@
 package com.slidra.slidraV1.motorcycle.service.impl;
 
 
+import com.slidra.slidraV1.exception.exceptions.ResourceAlreadyExistsException;
+import com.slidra.slidraV1.exception.exceptions.ResourceNotFoundException;
 import com.slidra.slidraV1.motorcycle.dto.BrandRequest;
 import com.slidra.slidraV1.motorcycle.dto.BrandResponse;
 import com.slidra.slidraV1.motorcycle.mapper.BrandMapper;
@@ -32,19 +34,18 @@ public class BrandModelImpl implements BrandService {
     public BrandResponse addNewBrand(BrandRequest brandRequest) {
         brandRepository.findByName(brandRequest.name())
                 .ifPresent(brand -> {
-                    throw new RuntimeException("Brand already exists"); // todo pakeisti išimtį
+                    throw new ResourceAlreadyExistsException("Brand already exists");
                 });
 
         Brand brand = brandMapper.toBrand(brandRequest);
         Brand savedBrand = brandRepository.save(brand);
-
         return brandMapper.toBrandResponse(savedBrand);
     }
 
     @Override
     public BrandResponse updateBrandNameById(Long id, BrandRequest brandRequest) {
         var brand =brandRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Brand not exists"));
+                .orElseThrow(()-> new ResourceNotFoundException("Brand not found with id: " + id));
         brand.setName(brandRequest.name());
         return brandMapper.toBrandResponse(brandRepository.save(brand));
     }

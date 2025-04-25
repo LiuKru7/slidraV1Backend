@@ -1,4 +1,4 @@
-package com.slidra.slidraV1.motoPart.model;
+package com.slidra.slidraV1.part.model;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;
