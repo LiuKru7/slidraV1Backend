@@ -1,6 +1,7 @@
 package com.slidra.slidraV1.motorcycle.service.impl;
 
 
+import com.slidra.slidraV1.exception.exceptions.ResourceNotFoundException;
 import com.slidra.slidraV1.motorcycle.dto.ModelRequest;
 import com.slidra.slidraV1.motorcycle.dto.ModelResponse;
 import com.slidra.slidraV1.motorcycle.mapper.ModelMapper;
@@ -25,7 +26,7 @@ public class ModelServiceImpl implements ModelService {
     public List<ModelResponse> getAllModelsByBrand(Long brandId) {
         Brand brandById = brandRepository.findById(brandId)
                 //todo need change exception
-                .orElseThrow(()-> new RuntimeException("Brand not found"));
+                .orElseThrow(()-> new ResourceNotFoundException("Brand not found by id" + brandId));
         return brandById.getModels().stream()
                 .map(modelMapper::toModelResponse)
                 .toList();
@@ -41,7 +42,7 @@ public class ModelServiceImpl implements ModelService {
     public ModelResponse updateModelById(Long id, ModelRequest modelRequest) {
         //todo need change exception
         modelRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("Model not found by id: " + id));
+                .orElseThrow(()->new ResourceNotFoundException("Model not found by id: " + id));
         var model = modelMapper.toModel(modelRequest);
         model.setId(id);
         return modelMapper.toModelResponse(model);
