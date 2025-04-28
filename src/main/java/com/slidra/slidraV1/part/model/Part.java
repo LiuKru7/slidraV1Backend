@@ -22,8 +22,9 @@ public class Part {
 
     private String defectDescription;
 
-    @Embedded
-    private PartLocation partLocation;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location partLocation;
 
     private Double price;
 }
