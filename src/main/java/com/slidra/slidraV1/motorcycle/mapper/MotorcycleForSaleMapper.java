@@ -9,9 +9,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface MotorcycleForSaleMapper {
 
-    //todo need check expression
-
-
         @Mapping(target = "modelId", expression = "java(motorcycleForSale.getModel().getId())")
         @Mapping(target = "modelName", expression = "java(motorcycleForSale.getModel().getName())")
         @Mapping(target = "brandName", expression = "java(motorcycleForSale.getModel().getBrand().getName())")

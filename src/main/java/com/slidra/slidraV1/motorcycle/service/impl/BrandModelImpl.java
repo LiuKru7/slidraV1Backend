@@ -25,29 +25,41 @@ public class BrandModelImpl implements BrandService {
 
     @Override
     public List<BrandResponse> getAllBrands() {
-        return brandRepository.findAll().stream()
+        log.info("Fetching all brands from the database.");
+        List<Brand> brands = brandRepository.findAll();
+        log.debug("Retrieved {} brands.", brands.size());
+        return brands.stream()
                 .map(brandMapper::toBrandResponse)
                 .toList();
     }
 
     @Override
     public BrandResponse addNewBrand(BrandRequest brandRequest) {
+        log.info("Attempting to add a new brand: {}", brandRequest.name());
         brandRepository.findByName(brandRequest.name())
                 .ifPresent(brand -> {
+                    log.warn("Brand with name '{}' already exists.", brandRequest.name());
                     throw new ResourceAlreadyExistsException("Brand already exists");
                 });
 
         Brand brand = brandMapper.toBrand(brandRequest);
         Brand savedBrand = brandRepository.save(brand);
+        log.info("Successfully added new brand with ID: {}", savedBrand.getId());
         return brandMapper.toBrandResponse(savedBrand);
     }
 
     @Override
     public BrandResponse updateBrandNameById(Long id, BrandRequest brandRequest) {
-        var brand =brandRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Brand not found with id: " + id));
+        log.info("Updating brand with ID: {} to new name: {}", id, brandRequest.name());
+        Brand brand = brandRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("Brand not found with ID: {}", id);
+                    return new ResourceNotFoundException("Brand not found with id: " + id);
+                });
         brand.setName(brandRequest.name());
-        return brandMapper.toBrandResponse(brandRepository.save(brand));
+        Brand updatedBrand = brandRepository.save(brand);
+        log.info("Successfully updated brand with ID: {}", updatedBrand.getId());
+        return brandMapper.toBrandResponse(updatedBrand);
     }
-
 }
+
