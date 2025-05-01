@@ -22,10 +22,6 @@ public class Part {
 
     private String defectDescription;
 
-    @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location partLocation;
-
     private Double price;
 }
 
